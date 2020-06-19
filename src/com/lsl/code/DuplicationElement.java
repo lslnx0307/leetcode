@@ -11,8 +11,8 @@ import java.util.HashSet;
 public class DuplicationElement {
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 3, 1, 0, 4, 5, 3};
-        System.out.println(findRepeatNumber1(arr));
+        int[] arr = new int[]{2, 3, 1, 2, 4, 5, 3};
+        System.out.println(findRepeatNumber2(arr));
     }
 
     /**
@@ -36,7 +36,7 @@ public class DuplicationElement {
     /**
      * [2, 3, 1, 0, 2, 5, 3]
      * [1, 3, 2, 0, 2, 5, 3]
-     * [1, 0, 2, 3, 2, 5, 3]
+     * [1, 0, 2, 3, 4, 5, 3]
      * 使用原地置换
      * 
      * @param nums
@@ -53,6 +53,17 @@ public class DuplicationElement {
                 nums[i] = nums[temp];
                 nums[temp] = temp;
             }
+        }
+        return -1;
+    }
+
+    public static int findRepeatNumber2(int[] nums) {
+        int[] arr = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (arr[nums[i]] == 1) {
+                return nums[i];
+            }
+            arr[nums[i]] = 1;
         }
         return -1;
     }
